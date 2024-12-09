@@ -4,8 +4,12 @@ import br.com.blz.testjava.model.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,8 +36,15 @@ public class TestJavaApplicationTests {
         "    \"isMarketable\": true\n" +
         "}";
 
+    @Autowired
+    private MockMvc mockMvc;
+    @Mock
+    private ProductService productService;
+    @InjectMocks
+    private ProductController productController;
+
     @Test
-	public void contextLoads() {
+	public void givenValidParameters_whenCallsCreateProduct_shouldReturn201() {
         final Integer expectedSku = 43264;
         final String expectedName = "L'Oréal Professionnel Expert Absolut Repair Cortex Lipidium - Máscara de Reconstrução 500g";
         final Integer expectedQuantity = 15;
