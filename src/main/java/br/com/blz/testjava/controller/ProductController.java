@@ -19,7 +19,7 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<?> createProduct(@RequestBody ProductRequest input) {
         Product product = productService.createProduct(input);
-        return ResponseEntity.created(URI.create("/api/products/" + product.getSku())).body(product);
+        return ResponseEntity.created(URI.create("/api/products/" + product.getSku())).body(product.getSku());
     }
 
     @GetMapping("{sku}")
@@ -29,7 +29,8 @@ public class ProductController {
 
     @PutMapping("{sku}")
     public ResponseEntity<?> updateBySku(@PathVariable(name = "sku") Integer sku, @RequestBody ProductRequest input) {
-        return ResponseEntity.ok(productService.updateProduct(sku, input));
+        productService.updateProduct(sku, input);
+        return ResponseEntity.ok(sku);
     }
 
     @GetMapping
