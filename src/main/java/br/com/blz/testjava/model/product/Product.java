@@ -1,6 +1,7 @@
 package br.com.blz.testjava.model.product;
 
 import br.com.blz.testjava.model.inventory.Inventory;
+import br.com.blz.testjava.model.inventory.InventoryRequest;
 
 import java.util.Objects;
 
@@ -12,15 +13,16 @@ public class Product {
 
     public Product() {}
 
-    public Product(Integer sku, String name) {
+    public Product(Integer sku, String name, InventoryRequest inventory) {
         this.sku = sku;
         this.name = name;
+        this.inventory = Inventory.from(inventory);
         this.isMarketable = false;
     }
 
     public static Product from(ProductRequest request) {
         if (request == null) return null;
-        return new Product(request.getSku(), request.getName());
+        return new Product(request.getSku(), request.getName(), request.getInventory());
     }
 
     public Integer getSku() {

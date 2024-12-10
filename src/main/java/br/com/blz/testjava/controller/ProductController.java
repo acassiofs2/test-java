@@ -38,7 +38,7 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<?> listProducts() {
-        return ResponseEntity.ok(productService.getAllProducts());
+        return ResponseEntity.ok(productService.retrieveAllProducts());
     }
 
     @DeleteMapping("{sku}")
