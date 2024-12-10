@@ -1,6 +1,7 @@
 package br.com.blz.testjava;
 
 import br.com.blz.testjava.controller.ProductController;
+import br.com.blz.testjava.exceptions.BadRequestException;
 import br.com.blz.testjava.model.product.Product;
 import br.com.blz.testjava.model.product.ProductRequest;
 import br.com.blz.testjava.service.ProductService;
@@ -72,6 +73,22 @@ public class TestJavaApplicationTests {
 
         int actualStatusCode = productController.createProduct(input).getStatusCode().value();
         assertEquals(expectedStatusCode, actualStatusCode);
+    }
+
+    @Test
+    public void givenAnExistingSku_whenCallsCreateProductFromController_shouldReturnBadRequest() {
+        final Integer expectedStatusCode = 404;
+
+        productService.clear();
+        ProductRequest input = createProduct();
+
+        assertNotNull(input);
+
+        productController.createProduct(input);
+        assertThrows(BadRequestException.class, () -> {
+            int actualStatusCode = productController.createProduct(input).getStatusCode().value();
+            assertEquals(expectedStatusCode, actualStatusCode);
+        });
     }
 
     private ProductRequest createProduct() {
