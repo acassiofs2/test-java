@@ -1,4 +1,6 @@
-package br.com.blz.testjava.model;
+package br.com.blz.testjava.model.product;
+
+import br.com.blz.testjava.model.inventory.Inventory;
 
 import java.util.Objects;
 
@@ -7,6 +9,19 @@ public class Product {
     private String name;
     private Inventory inventory;
     private Boolean isMarketable;
+
+    public Product() {}
+
+    public Product(Integer sku, String name) {
+        this.sku = sku;
+        this.name = name;
+        this.isMarketable = false;
+    }
+
+    public static Product from(ProductRequest request) {
+        if (request == null) return null;
+        return new Product(request.getSku(), request.getName());
+    }
 
     public Integer getSku() {
         return sku;

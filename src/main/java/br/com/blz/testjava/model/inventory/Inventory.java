@@ -1,4 +1,6 @@
-package br.com.blz.testjava.model;
+package br.com.blz.testjava.model.inventory;
+
+import br.com.blz.testjava.model.warehouse.Warehouse;
 
 import java.util.List;
 

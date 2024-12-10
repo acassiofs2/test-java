@@ -1,4 +1,4 @@
-package br.com.blz.testjava.model.enums;
+package br.com.blz.testjava.model.warehouse;
 
 public enum WarehouseType {
     ECOMMERCE,

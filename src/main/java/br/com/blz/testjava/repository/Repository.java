@@ -5,6 +5,7 @@ import java.util.Optional;
 
 public interface Repository<T, ID> {
     T create(T entity);
+    T update(ID id, T entity);
     Optional<T> findById(ID id);
     void deleteById(ID id);
     List<T> findAll();

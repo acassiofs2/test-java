@@ -1,6 +1,4 @@
-package br.com.blz.testjava.model;
-
-import br.com.blz.testjava.model.enums.WarehouseType;
+package br.com.blz.testjava.model.warehouse;
 
 public class Warehouse {
     private String locality;
