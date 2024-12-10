@@ -1,5 +1,6 @@
 package br.com.blz.testjava.service;
 
+import br.com.blz.testjava.exceptions.BadRequestException;
 import br.com.blz.testjava.exceptions.NotFoundException;
 import br.com.blz.testjava.model.product.Product;
 import br.com.blz.testjava.model.product.ProductRequest;
@@ -16,9 +17,9 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Product createProduct(ProductRequest productRequest) throws Exception {
+    public Product createProduct(ProductRequest productRequest) {
         if (getProduct(productRequest.getSku()) != null) {
-            throw new Exception("Já existe um produto com o sku informado!");
+            throw new BadRequestException("Já existe um produto com o sku informado!");
         }
         return productRepository.create(Product.from(productRequest));
     }

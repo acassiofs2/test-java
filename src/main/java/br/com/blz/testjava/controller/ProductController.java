@@ -18,12 +18,8 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<?> createProduct(@RequestBody ProductRequest input) {
-        try {
-            Product product = productService.createProduct(input);
-            return ResponseEntity.created(URI.create("/api/products/" + product.getSku())).body(product);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        Product product = productService.createProduct(input);
+        return ResponseEntity.created(URI.create("/api/products/" + product.getSku())).body(product);
     }
 
     @GetMapping("{sku}")
