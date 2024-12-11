@@ -24,8 +24,8 @@ public class ProductService {
         return productRepository.create(Product.from(productRequest));
     }
 
-    public Product updateProduct(Integer sku, ProductRequest productRequest) {
-        return productRepository.update(sku, Product.from(productRequest));
+    public void updateProduct(Integer sku, ProductRequest productRequest) {
+        productRepository.update(sku, Product.from(productRequest));
     }
 
     public Product retrieveProduct(Integer sku) {
